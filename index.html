@@ -1,5 +1,5 @@
 
-
+<!DOCTYPE html>
 <html lang="ar" dir="rtl">
 <head>
 <meta charset="UTF-8">
@@ -14,6 +14,7 @@ header p{color:#a9c8e8}
 nav{display:flex;flex-wrap:wrap;justify-content:center;gap:8px;padding:15px;background:#0a192c;position:sticky;top:0}
 button{background:#126bc0;color:white;border:0;padding:11px 16px;border-radius:8px;cursor:pointer;font-weight:bold}
 button:hover{background:#258ff0}
+button:disabled{opacity:.5;cursor:not-allowed}
 main{max-width:950px;margin:auto;padding:20px}
 section{display:none;background:#10233d;padding:22px;border-radius:14px;margin-bottom:18px;border:1px solid #23466b}
 section.active{display:block}
@@ -24,7 +25,7 @@ p,li{line-height:1.8}
 input{padding:12px;border-radius:8px;border:1px solid #4b739d;background:#071426;color:white;width:100%;margin:8px 0}
 .option{display:block;background:#0b1b30;padding:12px;margin:8px 0;border-radius:8px;cursor:pointer}
 .option input{width:auto}
-.result{padding:12px;margin-top:12px;border-radius:8px;background:#173b59}
+.result{padding:12px;margin-top:12px;border-radius:8px;background:#173b59;line-height:1.8}
 footer{text-align:center;color:#8daac8;padding:25px}
 </style>
 </head>
@@ -43,6 +44,8 @@ footer{text-align:center;color:#8daac8;padding:25px}
 <button onclick="showPage('daily')">التحدي اليومي</button>
 <button onclick="showPage('tips')">النصائح</button>
 <button onclick="showPage('profile')">ملفي</button>
+<button onclick="showPage('news')">الأخبار</button>
+<button onclick="showPage('achievements')">إنجازاتي</button>
 </nav>
 
 <main>
@@ -64,31 +67,12 @@ footer{text-align:center;color:#8daac8;padding:25px}
 
 <section id="lessons">
 <h2>الدروس التعليمية</h2>
-<div class="card">
-<h3>الدرس الأول: مقدمة الأمن السيبراني</h3>
-<p>الأمن السيبراني هو حماية الأجهزة والشبكات والبيانات من الوصول غير المصرح به والهجمات الرقمية.</p>
-<button onclick="completeLesson(0)">إكمال الدرس</button>
-</div>
-<div class="card">
-<h3>الدرس الثاني: كلمات المرور</h3>
-<p>استخدم كلمة مرور طويلة وفريدة، ولا تشاركها مع الآخرين، وفعّل التحقق بخطوتين.</p>
-<button onclick="completeLesson(1)">إكمال الدرس</button>
-</div>
-<div class="card">
-<h3>الدرس الثالث: التصيد الإلكتروني</h3>
-<p>التصيد الإلكتروني محاولة لخداع المستخدم حتى يكشف معلوماته. تحقق دائماً من الروابط والمرسل.</p>
-<button onclick="completeLesson(2)">إكمال الدرس</button>
-</div>
-<div class="card">
-<h3>الدرس الرابع: التحديثات والنسخ الاحتياطي</h3>
-<p>حدّث أجهزتك باستمرار، واحتفظ بنسخة احتياطية من ملفاتك المهمة.</p>
-<button onclick="completeLesson(3)">إكمال الدرس</button>
-</div>
+<div id="lessonsArea"></div>
 </section>
 
 <section id="quiz">
 <h2>اختبار الأمن السيبراني</h2>
-<p>اختر الإجابة الصحيحة لكل سؤال.</p>
+<p>خمسة أسئلة، كل إجابة صحيحة تساوي 20 درجة.</p>
 <div id="quizArea"></div>
 <button onclick="submitQuiz()">إرسال الإجابات</button>
 <div id="quizResult" class="result"></div>
@@ -110,8 +94,11 @@ footer{text-align:center;color:#8daac8;padding:25px}
 <p>الدروس المكتملة: <strong id="lessonCount">0</strong> من 4</p>
 <p>المستوى: <strong id="level">مبتدئ</strong></p>
 </div>
-<h3>إنجازاتك</h3>
-<p id="achievements"></p>
+<div class="card">
+<h3>التحدي اليومي</h3>
+<p>أكمل تحدي اليوم لتحصل على نقاط.</p>
+<button onclick="showPage('daily')">اذهب للتحدي</button>
+</div>
 </section>
 
 <section id="tips">
@@ -135,6 +122,41 @@ footer{text-align:center;color:#8daac8;padding:25px}
 </div>
 </section>
 
+<section id="news">
+<h2>أخبار ومعلومات الأمن السيبراني</h2>
+<div class="card">
+<h3>مفاتيح المرور Passkeys</h3>
+<p>تقنية حديثة تساعد على تسجيل الدخول دون الحاجة إلى كلمة مرور تقليدية.</p>
+</div>
+<div class="card">
+<h3>الذكاء الاصطناعي والأمن</h3>
+<p>يساعد الذكاء الاصطناعي في اكتشاف بعض الأنشطة الرقمية غير المعتادة.</p>
+</div>
+<div class="card">
+<h3>حماية البيانات الشخصية</h3>
+<p>لا تشارك بياناتك الشخصية إلا مع الجهات والمواقع الموثوقة.</p>
+</div>
+<div class="card">
+<h3>تحديث الأجهزة</h3>
+<p>التحديثات تساعد على إصلاح الثغرات الأمنية وتحسين الحماية.</p>
+</div>
+<p>هذه معلومات تعليمية وليست أخباراً مباشرة.</p>
+</section>
+
+<section id="achievements">
+<h2>إنجازاتي</h2>
+<div class="card">
+<p id="achievementLessons">الدروس المكتملة: 0 من 4</p>
+<p id="achievementQuiz">أفضل نتيجة: 0 من 100</p>
+<p id="achievementPoints">النقاط: 0</p>
+<p id="achievementCourse">حالة الدورة: لم تجتز الدورة بعد</p>
+</div>
+<h3>شهادة إتمام تعليمية تجريبية</h3>
+<p>تحتاج إلى إكمال الدروس الأربعة واجتياز الاختبار النهائي للحصول عليها.</p>
+<button onclick="getCertificate()">عرض الشهادة</button>
+<div id="certificate" class="result"></div>
+</section>
+
 </main>
 
 <footer>
@@ -145,10 +167,27 @@ footer{text-align:center;color:#8daac8;padding:25px}
 <script>
 function getNumber(key){return Number(localStorage.getItem(key)||0)}
 function setNumber(key,value){localStorage.setItem(key,value)}
+
 let points=getNumber("cyvoraPoints");
 let best=getNumber("cyvoraBest");
 let lessons=JSON.parse(localStorage.getItem("cyvoraLessons")||"[false,false,false,false]");
 let tipIndex=0;
+
+const lessonData=[
+{title:"الدرس الأول: مقدمة الأمن السيبراني",text:"الأمن السيبراني هو حماية الأجهزة والشبكات والبيانات من الوصول غير المصرح به والهجمات الرقمية."},
+{title:"الدرس الثاني: كلمات المرور",text:"استخدم كلمة مرور طويلة وفريدة، ولا تشاركها مع الآخرين، وفعّل التحقق بخطوتين."},
+{title:"الدرس الثالث: التصيد الإلكتروني",text:"التصيد الإلكتروني محاولة لخداع المستخدم حتى يكشف معلوماته. تحقق دائماً من الروابط والمرسل."},
+{title:"الدرس الرابع: التحديثات والنسخ الاحتياطي",text:"حدّث أجهزتك باستمرار، واحتفظ بنسخة احتياطية من ملفاتك المهمة."}
+];
+
+function renderLessons(){
+document.getElementById("lessonsArea").innerHTML=lessonData.map((l,i)=>`
+<div class="card">
+<h3>${l.title}</h3>
+<p>${l.text}</p>
+<button onclick="completeLesson(${i})">${lessons[i]?"تم إكمال الدرس":"إكمال الدرس"}</button>
+</div>`).join("");
+}
 
 function showPage(id){
 document.querySelectorAll("main section").forEach(s=>s.classList.remove("active"));
@@ -168,6 +207,7 @@ lessons[index]=true;
 localStorage.setItem("cyvoraLessons",JSON.stringify(lessons));
 addPoints(10);
 alert("أحسنت! حصلت على 10 نقاط.");
+renderLessons();
 }else{
 alert("لقد أكملت هذا الدرس سابقاً.");
 }
@@ -193,6 +233,7 @@ html+="</div>";
 });
 document.getElementById("quizArea").innerHTML=html;
 }
+
 function submitQuiz(){
 let score=0;
 questions.forEach((q,i)=>{
@@ -200,8 +241,11 @@ let selected=document.querySelector(`input[name="q${i}"]:checked`);
 if(selected&&Number(selected.value)===q.c)score++;
 });
 let result=score*20;
-if(result>best){best=result;setNumber("cyvoraBest",best);}
-document.getElementById("quizResult").innerText=`نتيجتك: ${score} من 5 (${result} من 100)`;
+if(result>best){
+best=result;
+setNumber("cyvoraBest",best);
+}
+document.getElementById("quizResult").innerText=`نتيجتك: ${score} من 5 (${result} من 100).`;
 updateAll();
 }
 
@@ -215,6 +259,7 @@ const dailyQuestions=[
 
 let today=new Date().toDateString();
 let dayIndex=Math.floor((new Date()-new Date(new Date().getFullYear(),0,0))/86400000)%5;
+
 function renderDaily(){
 let q=dailyQuestions[dayIndex];
 document.getElementById("dailyQuestion").innerText=q.q;
@@ -230,6 +275,7 @@ document.getElementById("dailyButton").disabled=false;
 document.getElementById("dailyResult").innerText="";
 }
 }
+
 function submitDaily(){
 let selected=document.querySelector('input[name="daily"]:checked');
 if(!selected){alert("اختر إجابة أولاً.");return;}
@@ -261,11 +307,15 @@ const tips=[
 "تجنب شبكات الواي فاي العامة عند التعامل مع بيانات حساسة.",
 "أخبر شخصاً موثوقاً إذا تعرض حسابك لمحاولة اختراق."
 ];
+
 function renderTip(){
 document.getElementById("tipTitle").innerText="نصيحة رقم "+(tipIndex+1);
 document.getElementById("tipText").innerText=tips[tipIndex];
 }
-function nextTip(){tipIndex=(tipIndex+1)%tips.length;renderTip();}
+function nextTip(){
+tipIndex=(tipIndex+1)%tips.length;
+renderTip();
+}
 
 function saveName(){
 let name=document.getElementById("username").value.trim();
@@ -274,6 +324,18 @@ localStorage.setItem("cyvoraUser",name);
 updateAll();
 alert("تم حفظ الاسم.");
 }
+
+function getCertificate(){
+let done=lessons.every(Boolean);
+let passed=best>=80;
+if(done&&passed){
+let name=localStorage.getItem("cyvoraUser")||"متعلم الأمن السيبراني";
+document.getElementById("certificate").innerHTML=`<h2>شهادة إتمام تعليمية</h2><h3>CYVORA INFO</h3><p>تشهد المنصة بأن <strong>${name}</strong> أكمل الدروس التعليمية واجتاز الاختبار بنجاح.</p><p>هذه شهادة تجريبية تعليمية غير معتمدة رسمياً.</p><button onclick="window.print()">طباعة الشهادة</button>`;
+}else{
+document.getElementById("certificate").innerText="أكمل الدروس الأربعة واحصل على 80 درجة على الأقل في الاختبار.";
+}
+}
+
 function updateAll(){
 points=getNumber("cyvoraPoints");
 best=getNumber("cyvoraBest");
@@ -282,13 +344,18 @@ document.getElementById("points").innerText=points;
 document.getElementById("best").innerText=best;
 document.getElementById("lessonCount").innerText=lessons.filter(Boolean).length;
 document.getElementById("level").innerText=points>=100?"متقدم":points>=40?"متوسط":"مبتدئ";
-document.getElementById("achievements").innerText=lessons.filter(Boolean).length+" دروس مكتملة من 4";
+document.getElementById("achievementLessons").innerText="الدروس المكتملة: "+lessons.filter(Boolean).length+" من 4";
+document.getElementById("achievementQuiz").innerText="أفضل نتيجة: "+best+" من 100";
+document.getElementById("achievementPoints").innerText="النقاط: "+points;
+document.getElementById("achievementCourse").innerText=lessons.every(Boolean)&&best>=80?"حالة الدورة: اجتزت الدورة":"حالة الدورة: لم تجتز الدورة بعد";
 let name=localStorage.getItem("cyvoraUser")||"زائر";
 document.getElementById("savedName").innerText=name;
 document.getElementById("username").value=name==="زائر"?"":name;
 document.getElementById("profilePoints").innerText=points;
 document.getElementById("profileStatus").innerText=lessons.every(Boolean)?"أكملت جميع الدروس":"مستمر في التعلم";
 }
+
+renderLessons();
 renderQuiz();
 renderDaily();
 renderTip();
