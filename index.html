@@ -8,16 +8,19 @@
 <style>
 *{box-sizing:border-box;scroll-behavior:smooth}
 body{margin:0;background:#07111f;color:#edf5ff;font-family:Arial,sans-serif}
-header{background:#0b1c31;padding:22px 6%;border-bottom:1px solid #164b79;position:sticky;top:0;z-index:5}
+header{background:#0b1c31;padding:15px 5%;border-bottom:1px solid #164b79;position:sticky;top:0;z-index:5}
 nav{display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:15px}
-.logo{font-size:25px;font-weight:bold;color:#29b6ff}
+.logo{display:flex;align-items:center;gap:12px;font-size:24px;font-weight:bold;color:#29b6ff}
+.logo img{width:58px;height:58px;object-fit:contain}
 nav a{color:#d9eaff;text-decoration:none;margin:7px;font-size:14px}
 nav a:hover{color:#29b6ff}
-.hero{text-align:center;padding:75px 20px;background:linear-gradient(140deg,#0b1c31,#102d50)}
+.hero{text-align:center;padding:65px 20px;background:linear-gradient(140deg,#0b1c31,#102d50)}
+.hero img{width:170px;height:170px;object-fit:contain;margin-bottom:10px}
 .hero h1{font-size:42px;color:#29b6ff;margin:10px}
 .hero p{color:#c3d8ed;line-height:1.9}
 button{background:#159be0;color:white;border:0;padding:12px 20px;border-radius:9px;cursor:pointer;font-weight:bold;margin:5px}
 button:hover{background:#0878b6}
+button:disabled{opacity:.5;cursor:not-allowed}
 section{padding:35px 6%;max-width:1200px;margin:auto}
 h2{color:#35baff;margin-bottom:20px}
 .grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:16px}
@@ -36,13 +39,28 @@ input[type=text]{padding:12px;border-radius:8px;border:1px solid #34516e;backgro
 footer{text-align:center;padding:25px;background:#0b1c31;color:#9cb7d0;margin-top:30px}
 .small{font-size:13px;color:#9cb7d0}
 .notice{color:#70d4ff;line-height:1.8}
+@media(max-width:600px){
+.logo{font-size:19px}
+.logo img{width:45px;height:45px}
+.hero h1{font-size:32px}
+nav{justify-content:center}
+nav a{display:inline-block}
+}
+@media print{
+body{background:white;color:black}
+header,footer,button{display:none}
+.card{background:white;color:black}
+}
 </style>
 </head>
 <body>
 
 <header>
 <nav>
-<div class="logo">CYVORA INFO</div>
+<div class="logo">
+<img src="logo.png" alt="شعار CYVORA INFO">
+<span>CYVORA INFO</span>
+</div>
 <div>
 <a href="#home">الرئيسية</a>
 <a href="#lessons">الدروس</a>
@@ -55,6 +73,7 @@ footer{text-align:center;padding:25px;background:#0b1c31;color:#9cb7d0;margin-to
 </header>
 
 <div class="hero" id="home">
+<img src="logo.png" alt="CYVORA INFO">
 <h1>CYVORA INFO</h1>
 <h3>رحلتك إلى عالم الأمن السيبراني</h3>
 <p>تعلم، اختبر معلوماتك، واجمع النقاط وافتح مستويات وإنجازات جديدة.</p>
